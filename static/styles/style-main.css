@@ -1,0 +1,37 @@
+/*.chart{*/
+/*    display: grid;*/
+/*    grid-template-columns: 1fr 2fr;*/
+/*    grid-template-rows: 4fr 1fr;*/
+
+/*}*/
+
+/*.site{*/
+/*    display: grid;*/
+/*    grid-template-columns: 1fr 1fr;*/
+/*    grid-template-rows: 1fr 1fr;*/
+/*}*/
+/*.gex{*/
+/*    display: grid;*/
+/*    grid-template-columns: 1fr 2fr;*/
+/*    grid-template-rows: 100px 10px;*/
+/*}*/
+/*body{*/
+/*    display: grid;*/
+/*    grid-template-columns: 10% 90%;*/
+/*    grid-template-rows: 10% 90%;*/
+/*}*/
+
+/*body h1{*/
+/*    grid-row: 1;*/
+/*    grid-column: 1;*/
+/*}*/
+/*.controller {*/
+/*    grid-column:1 ;*/
+/*    grid-row: 2;*/
+/*    display: inline-grid;*/
+/*}*/
+
+/*#chart {*/
+/*    grid-column: 2;*/
+/*    grid-row: 2;*/
+/*}*/
