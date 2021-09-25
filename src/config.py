@@ -12,6 +12,7 @@ class Config:
     def __init__(self):
         self.TESTING = True
         self.FLASK_APP = 'app.py'
+        self.FLASK_ENV = ''
 
 
 class ProductionConfig(Config):
@@ -43,7 +44,7 @@ class TestingConfig(Config):
         super().__init__()
         self.DEBUG = True
         self.TESTING = True
-        self.FLASK_ENV = 'testing'
+        self.FLASK_ENV = 'qa'
 
 
 class FactoryConfigClass:
@@ -52,11 +53,11 @@ class FactoryConfigClass:
     Get configuration based on environment
     """
     def __init__(self, env):
-        if env == "dev":
+        if env == "dev" or env == 'development':
             self.config = DevelopmentConfig()
         elif env == "qa" or env == "testing":
             self.config = TestingConfig()
-        elif env == "prod":
+        elif env == "prod" or env == "production":
             self.config = ProductionConfig()
         else:
             self.config = Config()
