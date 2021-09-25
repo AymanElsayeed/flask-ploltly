@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Bar Plot Page</title>
+</head>
+<body>
+
+    <h1>Hello Plotly (but not Dash)</h1>
+
+    <label for="countries">Choose a car:</label>
+    <select name="countries" id="countries">
+        {% for country in countries %}
+            <option value="{{ country }}">{{ country }}</option>
+        {% endfor %}
+    </select>
+
+    <form method="post">
+        <button type="submit" value="shorten"> submit </button>
+    </form>
+
+    <div id="chart" class="chart"></div>
+
+</body>
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<script type="text/javascript">
+    var graphs = {{ sunburst_json | safe }}
+    Plotly.plot('chart', graphs,{});
+</script>
+
+</html>

@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+
+</head>
+<body>
+<div>
+    <ul>
+    {% for item in links %}
+    <li> <a href="{{ item }}"> {{ item }} </a> </li>
+    {% endfor %}
+    </ul>
+
+
+</div>
+
+</body>
+</html>
