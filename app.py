@@ -4,22 +4,10 @@ from flask import Flask, url_for, jsonify, render_template, request
 import json
 import plotly
 import argparse
-import plotly.express as px
-from werkzeug.utils import import_string
 from src.Plots import *
 from src.config import FactoryConfigClass
 
 app = Flask(__name__)
-
-# cfg = import_string('src.config.ProductionConfig')()
-# app.config.from_object(cfg)
-# app.config.update(src.config.DevelopmentConfig().__dict__)
-
-# print("type of app.config", type(app.config), file=sys.stdout)
-# print("dir of app.config", dir(app.config), file=sys.stdout)
-# print("app config", app.config, file=sys.stdout)
-# print("app config items", app.config.items(), file=sys.stdout)
-# print("get attr from app config", app.config.get('ayman'), file=sys.stdout)
 
 
 @app.route('/home')
@@ -27,14 +15,8 @@ app = Flask(__name__)
 def home():
     links = []
     for rule in app.url_map.iter_rules():
-        # Filter out rules we can't navigate to in a browser
-        # and rules that require parameters
-        # if "GET" in rule.methods and has_no_empty_params(rule):
-        # url = url_for(rule.endpoint, rule.defaults)
-        print(rule.defaults, rule.endpoint, rule.arguments)
         links.append(rule.endpoint)
     return render_template('index.html', links=links)
-    # return jsonify(data=links)
 
 
 @app.route('/view_bar_plot', methods=["GET", "POST"])
