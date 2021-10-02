@@ -1,0 +1,5 @@
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script type="text/javascript">
+    var graphs = {{ graph_json | safe }}
+    Plotly.plot('chart', graphs,{});
+</script>
