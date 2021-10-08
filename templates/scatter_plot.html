@@ -1,28 +1,18 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>Bar Plot Page</title>
-    <link rel="stylesheet" href="{{ url_for('static',filename='styles/style-main.css') }}" type="text/css" media="all">
-</head>
-<body class="site">
 
-<div id="controls">
-    <h3> controls </h3>
-    <label> Name </label>
-    <input type="text">
-    <input type="text">
-    <input type="text">
-    <input type="text">
-</div>
-<div id="chart" class="chart"></div>
+{% include "includes/header.html" %}
+
+<body class="site">
+    <div  style="display: flex">
+        <div>
+            {% include "includes/form.html" %}
+        </div>
+    </div>
+    {% include "includes/chart.html" %}
+
 </body>
 
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-
-<script type="text/javascript">
-  var graphs = {{ scatter_json | safe }}
-  Plotly.plot('chart', graphs,{});
-</script>
+{% include "includes/graph.html" %}
 
 </html>
