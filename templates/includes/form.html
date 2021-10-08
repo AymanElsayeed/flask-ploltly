@@ -1,25 +1,62 @@
 <form method="post" class="controller">
 
-    <label for="country">Choose a country:</label>
-    <select name="country" id="country">
-        {% for country in countries %}
-        <option value="{{ country }}">{{ country }}</option>
+    {% if Options %}
+    <label name="option">Choose a group:</label>
+    <select name="option" id="option">
+        {% for option in Options %}
+            <optgroup label="{{ option }}">
+                {% for sub_option in Options.get(option) %}
+                <option value="{{ option }},{{ sub_option}}"> {{ sub_option }} </option>
+                {% endfor %}
+            </optgroup>
         {% endfor %}
     </select>
+    {% endif %}
 
+    {% if Groups %}
+    <label for="group">Choose a group:</label>
+    <select name="group" id="group">
+        {% for group in Groups %}
+        <option value="{{ group }}">{{ group }}</option>
+        {% endfor %}
+    </select>
+    {% endif %}
+
+    {% if Sizes %}
+    <label for="size">Choose a size:</label>
+    <select name="size" id="size">
+        {% for size in Sizes %}
+        <option value="{{ size }}">{{ size }}</option>
+        {% endfor %}
+    </select>
+    {% endif %}
+
+    {% if Colors %}
+    <label for="color">Choose a color:</label>
+    <select name="color" id="color">
+        {% for color in Colors %}
+        <option value="{{ color }}">{{ color }}</option>
+        {% endfor %}
+    </select>
+    {% endif %}
+
+    {% if X %}
     <label for="X">Choose a X:</label>
     <select name="X" id="X">
         {% for x in X %}
         <option value="{{ x }}">{{ x }}</option>
         {% endfor %}
     </select>
+    {% endif %}
 
+    {% if Y %}
     <label for="Y">Choose a Y:</label>
     <select name="Y" id="Y">
         {% for y in Y %}
         <option value="{{ y }}">{{ y }}</option>
         {% endfor %}
     </select>
+    {% endif %}
 
     <button type="submit" value="shorten"> submit </button>
 </form>
