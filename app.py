@@ -24,13 +24,13 @@ def view_bar_plot():
     countries = unique_countries()
     numeric_columns = float_columns()
 
-    country = request.form.get('country', countries[0])
+    country = request.form.get('group', countries[0])
     x = request.form.get('X', numeric_columns[0])
     y = request.form.get('Y', numeric_columns[1])
 
     fig = bar_plot(x=x, y=y, country=country)
     graph_json = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-    return render_template('bar_plot.html', graph_json=graph_json, countries=countries, Y=numeric_columns,
+    return render_template('bar_plot.html', graph_json=graph_json, Groups=countries, Y=numeric_columns,
                            X=numeric_columns, title="Bar Plot page")
 
 
