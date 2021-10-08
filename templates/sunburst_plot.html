@@ -19,15 +19,10 @@
         <button type="submit" value="shorten"> submit </button>
     </form>
 
-    <div id="chart" class="chart"></div>
+    {% include "includes/chart.html" %}
 
 </body>
 
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-
-<script type="text/javascript">
-    var graphs = {{ sunburst_json | safe }}
-    Plotly.plot('chart', graphs,{});
-</script>
+{% include "includes/graph.html" %}
 
 </html>
