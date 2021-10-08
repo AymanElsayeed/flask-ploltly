@@ -31,29 +31,49 @@ def view_bar_plot():
     fig = bar_plot(x=x, y=y, country=country)
     graph_json = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     return render_template('bar_plot.html', graph_json=graph_json, countries=countries, Y=numeric_columns,
-                           X=numeric_columns)
+                           X=numeric_columns, title="Bar Plot page")
 
 
 @app.route('/view_scatter_plot', methods=["GET", "POST"])
 def view_scatter_plot():
-    x = request.form.get('x', 'lifeExp')
-    y = request.form.get('y', 'gdpPercap')
-    color = request.form.get('color', 'country')
-    size = request.form.get('size', 'pop')
+    numeric_columns = float_columns()
+    cat_columns = categorical_columns()
+
+    x = request.form.get('X', numeric_columns[0])
+    y = request.form.get('Y', numeric_columns[1])
+    size = request.form.get('size', numeric_columns[2])
+    color = request.form.get('color', cat_columns[0])
 
     fig = scatter_plot(x=x, y=y, color=color, size=size)
 
     scatter_json = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-    return render_template('scatter_plot.html', scatter_json=scatter_json)
+
+    return render_template('scatter_plot.html', graph_json=scatter_json, X=numeric_columns, Y=numeric_columns,
+                           Colors=cat_columns, Sizes=numeric_columns, title="Scatter Plot Graph")
 
 
 @app.route('/view_line_plot', methods=["GET", "POST"])
 def view_line_plot():
-    country = request.form.get('countri', 'Oceania')
-    fig = line_plot(x='year', y='lifeExp', color='country', mode="lines+markers", continent='Oceania')
+    numeric_columns = float_columns()
+    cat_columns = categorical_columns()
+
+    x = request.form.get('X', numeric_columns[0])
+    y = request.form.get('Y', numeric_columns[1])
+
+    column, sub_group = request.form.get('option', 'continent,Oceania').split(',')
+    color = request.form.get('color', cat_columns[0])
+    mode = request.form.get('mode', "lines+markers")
+
+    options = unique_subgroup()
+
+    fig = line_plot(x=x, y=y, color=color, mode=mode, column=column, sub_group=sub_group)
+
     line_json = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-    countries = unique_countries()
-    return render_template('line_plot.html', line_json=line_json, countries=countries)
+
+    return render_template('line_plot.html', graph_json=line_json,
+                           X=numeric_columns, Y=numeric_columns, Options=options,
+                           Colors=cat_columns,
+                           title="Line Plot Page")
 
 
 @app.route('/view_sunburst_plot', methods=["GET", "POST"])
@@ -62,7 +82,8 @@ def view_sunburst_plot():
     fig = sunburst_plot()
     sunburst_json = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     countries = unique_countries()
-    return render_template('sunburst_plot.html', sunburst_json=sunburst_json, countries=countries)
+    return render_template('sunburst_plot.html', graph_json=sunburst_json, countries=countries,
+                           title="Sunburst Plot Page")
 
 
 @app.context_processor
