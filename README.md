@@ -10,6 +10,4 @@ The objective of this project is to demonstrate how to generate interactive plot
 
 ## Results
 
-[Dashboard Example](https://example.com)
-
-[Report Example](https://example.com)
+[Dashboard](https://aymanelsayeed.github.io/flask-ploltly/)
