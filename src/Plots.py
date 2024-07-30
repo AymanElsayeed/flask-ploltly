@@ -2,6 +2,12 @@
 Basic Plots base on gap-minder data set.
 """
 import plotly.express as px
+import asyncio
+import plotly.io as pio
+png_renderer = pio.renderers["svg"]
+png_renderer.width = 500
+png_renderer.height = 500
+pio.renderers.default = "svg"
 
 
 def unique_countries():
@@ -12,6 +18,13 @@ def unique_countries():
     df = px.data.gapminder()
     countries = df.country.unique().tolist()
     return countries
+
+
+def unique_subgroup():
+    df = px.data.gapminder()
+    s = df.select_dtypes(exclude=[float, int])
+    sub_group = s.apply(lambda x: x.unique().tolist()).to_dict()
+    return sub_group
 
 
 def unique_continent():
@@ -63,6 +76,15 @@ def float_columns():
     return df.select_dtypes(include=[float, int]).columns.to_list()
 
 
+def categorical_columns():
+    """
+    float columns in the data set.
+    :return: list
+    """
+    df = px.data.gapminder()
+    return df.select_dtypes(exclude=[float, int]).columns.to_list()
+
+
 def bar_plot(x: str = 'year', y: str = 'pop', country: str = 'New Zealand'):
     """
     Generate Bar Plot
@@ -72,21 +94,23 @@ def bar_plot(x: str = 'year', y: str = 'pop', country: str = 'New Zealand'):
     :return: figure
     """
     nz = px.data.gapminder().query(f"country == '{country}'")
-    fig = px.bar(nz, x=x, y=y, title=f"{country} Population over time")
+    title = f"{country} Population over time"
+    fig = px.bar(nz, x=x, y=y, title="", height=300, width=300)
     return fig
 
 
-def line_plot(x='year', y='lifeExp', color='country', continent='Oceania', mode="lines+markers"):
+def line_plot(x: str, y: str, color: str, sub_group: str, mode: str, column: str):
     """
     Generate Line Plot
     :param x:
     :param y:
     :param color:
-    :param continent:
+    :param sub_group:
+    :param column:
     :param mode:
     :return: figure
     """
-    df = px.data.gapminder().query(f"continent=='{continent}'")
+    df = px.data.gapminder().query(f"{column}=='{sub_group}'")
     fig = px.line(df, x=x, y=y, color=color)
     fig.update_traces(mode=mode)
     return fig
@@ -102,7 +126,7 @@ def scatter_plot(x='lifeExp', y='gdpPercap', color='country', size='pop'):
     :return: figure
     """
     df = px.data.gapminder()
-    fig = px.scatter(df, x=x, y=y, color=color, size=size)
+    fig = px.scatter(df, x=x, y=y, color=color, size=size, render_mode='svg')
     return fig
 
 

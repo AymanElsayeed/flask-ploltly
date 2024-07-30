@@ -2,16 +2,37 @@
 <html lang="en">
 {% include "includes/header.html" %}
 <body>
-
-    <h1>Hello Plotly (but not Dash)</h1>
+    <img src="../static/mdclone_logo.png" >
+    <h2> MDClone Synthetic file comparison report </h2>
+    <p>
+        This report compares the quality of MDClone’s synthetic data you have produced with the original data. If you are not familiar with the report please read the guide explaining how to read and understand the report.
+        General
+    </p>
+    <p>
+        Comparison was created at Monday, August 12, 2019 13:55
+    </p>
+    <p>
+        This file includes three parts: this page includes general information about the data and the comparison, followed by figures comparing the distribution of each variable in both original and synthetics data sets. Last there is a comparison of the correlations between each pair of variables.
+        Synthetic Data includes 9,725 rows of data.
+    </p>
+    <p>
+        Approximately ~100% of the rows have some censoring. The following figure shows how much censoring occurs for each variable. A light green means no censoring (using the full original data) and black means heavy censoring.
+    </p>
 
     <div  style="display: flex">
+<!--        <div>-->
+<!--            {% include "includes/form.html" %}-->
+<!--        </div>-->
         <div>
-            {% include "includes/form.html" %}
+<!--            {% include "includes/chart.html" %}-->
+            <h2> Variables’ distribution </h2>
+            {% for path in paths %}
+                <img src="{{ path }}"/>
+            {% endfor %}
         </div>
     </div>
 
-    {% include "includes/chart.html" %}
+
 
 </body>
 

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "includes/header.html" %}
+<body class="site">
+    <h2> Variables’ distribution </h2>
+    <div class="fig">
+        {% for class,path in data %}
+            <img src="{{ path }}" class="{{ class }}"/>
+        {% endfor %}
+    </div>
+</body>
+
+{% include "includes/graph.html" %}
+
+</html>

@@ -1,0 +1,27 @@
+
+.fig{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+            "g11 g12 g13"
+            "g21 g22 g23"
+            "g31 g32 g33"
+            "g41 g42 g43";
+}
+
+.g11{ grid-area: g11; }
+.g12{ grid-area: g12; }
+.g13{ grid-area: g13; }
+
+.g21{ grid-area: g21; }
+.g22{ grid-area: g22; }
+.g23{ grid-area: g23; }
+
+.g31{ grid-area: g31; }
+.g32{ grid-area: g32; }
+.g33{ grid-area: g33; }
+
+.g41{ grid-area: g41; }
+.g42{ grid-area: g42; }
+.g43{ grid-area: g43; }

@@ -3,15 +3,16 @@
 {% include "includes/header.html" %}
 <body>
 <h1>Hello Plotly (but not Dash)</h1>
-
     <div  style="display: flex">
+        <div  style="display: inline-block">
+            <div>
+                {% include "includes/form.html" %}
+            </div>
+        </div>
         <div>
-            {% include "includes/form.html" %}
+            {% include "includes/chart.html" %}
         </div>
     </div>
-
-    {% include "includes/chart.html" %}
-
 </body>
 
 {% include "includes/graph.html" %}
